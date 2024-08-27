@@ -8,7 +8,7 @@ class Category(models.Model):
     name = models.CharField(
         max_length=25, verbose_name="Категория", help_text="Введите название категории"
     )
-    description = models.TextField(verbose_name='Описание категории')
+    description = models.TextField(verbose_name="Описание категории")
 
     def __str__(self):
         return self.name
@@ -40,8 +40,12 @@ class Product(models.Model):
         **NULLABLE,
     )
     is_available = models.BooleanField(default=True, verbose_name="В наличии")
-    created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания', editable=False)
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата создания', editable=False)
+    created_at = models.DateField(
+        auto_now_add=True, verbose_name="Дата создания", editable=False
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True, verbose_name="Дата создания", editable=False
+    )
 
     def __str__(self):
         return (
