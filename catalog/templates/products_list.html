@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load my_tags %}
+{% block content %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        {% for product in products %}
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img src="{{ product.image | media_filter }}">
+            <div class="card-body">
+              <p class="card-text">
+                <h5>{{ product.name }}</h5>
+                {{ product.description }}
+              </p>
+              <div
+                class="d-flex justify-content-between align-items-center"
+              >
+              <a class="btn btn-primary" href="{% url 'catalog:product_detail' product.pk %}" role="button">Подробности</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+</div>
+{% endblock %}
