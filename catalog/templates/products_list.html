@@ -12,7 +12,7 @@
             <div class="card-body">
               <p class="card-text">
                 <h5>{{ product.name }}</h5>
-                {{ product.description }}
+                {{ product.description  | truncatechars:30 }}
               </p>
               <div
                 class="d-flex justify-content-between align-items-center"
