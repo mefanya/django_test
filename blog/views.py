@@ -9,6 +9,7 @@ from django.views.generic import (
     DeleteView,
 )
 from blog.models import Article
+from blog.utils import send_notification_email
 
 
 class BlogListView(ListView):
@@ -26,6 +27,10 @@ class BlogDetailView(DetailView):
         self.object = super().get_object(queryset)
         self.object.views_count += 1
         self.object.save()
+
+        if self.object.views_count == 100:
+            send_notification_email(self.object.title)
+
         return self.object
 
 
