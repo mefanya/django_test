@@ -31,7 +31,8 @@ class Product(models.Model):
     )
     price = models.IntegerField(verbose_name="Цена", help_text="Введите целое число")
     description = models.TextField(
-        verbose_name="Описание товара",)
+        verbose_name="Описание товара",
+    )
     image = models.ImageField(
         upload_to="catalog/images",
         verbose_name="Изображение",
@@ -44,6 +45,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True, verbose_name="Дата создания", editable=False
     )
+    views_count = models.PositiveIntegerField(default=0, verbose_name="Количество просмотров")
 
     def __str__(self):
         return (

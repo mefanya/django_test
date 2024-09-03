@@ -1,4 +1,6 @@
-from django.urls import reverse_lazy
+from django.db.models.base import Model as Model
+from django.db.models.query import QuerySet
+from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404, render
 
@@ -11,6 +13,12 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
+    
+    def get_object(self, queryset=None) -> Model:
+        self.object = super().get_object(queryset)
+        self.object.views_count += 1
+        self.object.save()
+        return self.object
 
 
 class ProductCreateView(CreateView):
@@ -23,6 +31,9 @@ class ProductUpdateView(UpdateView):
     model = Product
     fields = ("name", "price", "description", "is_available", "image")
     success_url = reverse_lazy("catalog:product_list")
+    
+    def get_success_url(self) -> str:
+        return reverse("catalog:product_detail", args=[self.kwargs.get("pk")])
     
 
 class ProductDeleteView(DeleteView):
