@@ -1,0 +1,17 @@
+{% extends "catalog/base.html" %} {% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="post" class="border p-4 rounded bg-light">
+                {% csrf_token %}
+                <div class="form-group">{{ form.as_p}}</div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    {% if object %} Изменить товар {% else %} Добавить товар {% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -29,14 +29,12 @@ class Product(models.Model):
     name = models.CharField(
         max_length=25, verbose_name="Продукт", help_text="Введите название продукта"
     )
-    price = models.IntegerField(verbose_name="Цена", help_text="Введите цену товара")
+    price = models.IntegerField(verbose_name="Цена", help_text="Введите целое число")
     description = models.TextField(
-        verbose_name="Описание товара", help_text="Введите описание товара"
-    )
+        verbose_name="Описание товара",)
     image = models.ImageField(
         upload_to="catalog/images",
         verbose_name="Изображение",
-        help_text="Добавьте фото продукта",
         **NULLABLE,
     )
     is_available = models.BooleanField(default=True, verbose_name="В наличии")
