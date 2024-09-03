@@ -45,7 +45,9 @@ class Product(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True, verbose_name="Дата создания", editable=False
     )
-    views_count = models.PositiveIntegerField(default=0, verbose_name="Количество просмотров")
+    views_count = models.PositiveIntegerField(
+        default=0, verbose_name="Количество просмотров"
+    )
 
     def __str__(self):
         return (
