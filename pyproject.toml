@@ -10,10 +10,13 @@ python = "^3.12"
 django = "^5.1"
 psycopg2 = "^2.9.9"
 ipython = "^8.26.0"
-black = "^24.8.0"
 pillow = "^10.4.0"
 chardet = "^5.2.0"
+python-decouple = "^3.8"
 
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
 
 [build-system]
 requires = ["poetry-core"]
