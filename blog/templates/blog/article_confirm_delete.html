@@ -1,0 +1,26 @@
+{% extends "catalog/base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="post" class="border p-4 rounded bg-light">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Форма удаления статьи:</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ object.title }}</h6>
+                        <p class="card-text">Вы действительно хотите удалить статью? <br><br> 
+                            После удаления восстановить ее будет не возможно. 
+                            Все несохраненные данные будут утеряны!
+                        </p>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Удалить</button>
+                        <a href="{% url 'blog:article_list' %}" class="btn btn-secondary">Отмена</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

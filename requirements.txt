@@ -1,0 +1,6 @@
+python
+django
+psycopg2
+ipython
+pillow
+chardet
