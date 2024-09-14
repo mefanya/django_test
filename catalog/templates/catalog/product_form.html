@@ -1,16 +1,63 @@
 {% extends "catalog/base.html" %} {% block content %}
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <form method="post" class="border p-4 rounded bg-light">
-                {% csrf_token %}
-                <div class="form-group">{{ form.as_p}}</div>
-                <button type="submit" class="btn btn-primary btn-block">
-                    {% if object %} Изменить товар {% else %} Добавить товар {% endif %}
-                </button>
-            </form>
-        </div>
+    <div class="row">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        {% if object %}
+                        <h4>Изменение товара</h4>
+                        {% else %}
+                        <h4>Создание товара</h4>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        {% csrf_token %}
+                        <div class="form-group">{{ form.as_p}}</div>
+                    </div>
+                    <div class="card-footer">
+                        {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                        >
+                            {% if object %} Изменить товар 
+                            {% else %} Добавить товар 
+                            {% endif %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        {% if object %}
+                        <h4>Изменение версии</h4>
+                        {% else %}
+                        <h4>Создание версии</h4>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        {{ formset.management_form }} 
+                        {% for form in formset.forms %} 
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                {{ forloop.counter }}
+                            </div>
+                            <div class="card-body">
+                                {{ form.as_p }} 
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
